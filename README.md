@@ -17,7 +17,7 @@ WHERE log.path like concat('%', articles.slug)
 GROUP by articles.title, articles.author order by views desc;
 
 CREATE view error as
-SEKECT date(time), round(100.0*sum(case log.status when '200 OK' then 0 else 1 end)/count(log.status), 2) as "Percent Error"
+SELECT date(time), round(100.0*sum(case log.status when '200 OK' then 0 else 1 end)/count(log.status), 2) as "Percent Error"
 FROM log 
 GROUP by date(time) order by "Percent Error" desc;
 
